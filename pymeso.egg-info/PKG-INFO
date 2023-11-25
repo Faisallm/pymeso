@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: pymeso
+Version: 0.1
+Summary: This package provide researches in the area of mesoscale modelling for concrete, composite materials to easily create mesoscale models. You will need numpy, matplotlib, shapely
+Home-page: https://github.com/Faisallm/mesoscale-simulation
+Author: Faisal Lawan Muhammad
+Author-email: Faisallawan1997@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6

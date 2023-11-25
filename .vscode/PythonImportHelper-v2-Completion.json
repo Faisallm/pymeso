@@ -1,0 +1,287 @@
+[
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "math",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "math",
+        "description": "math",
+        "detail": "math",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "Polygon",
+        "importPath": "shapely.geometry",
+        "description": "shapely.geometry",
+        "isExtraImport": true,
+        "detail": "shapely.geometry",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "find_packages",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "generate_vertices",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def generate_vertices(j, i, ecell):\n    \"\"\"returns array of a, b, c, d, o(center).\n      a vertex of the bottom left corner\n      b vertex of the top left corner\n      c vertex of the top right corner\n      d vertex of the  bottom right corner\n      0 vertex of the center\n      arguments: j, i, ecell\"\"\"\n    # vertices\n    a = [(i-1)*ecell, (j-1)*ecell]",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "generate_grid",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def generate_grid(size, num_cell=10, file_name='2D_mesh.txt'):\n    \"\"\"This will generate a grid.\n    Mimicking finite element meshing.\n    arugments: size of concrete sample(length or breadth), num_cells, file_name\n    (where we will store the generate grids and their vertex)\"\"\"\n    L = size\n    H = size\n    cell = int(size / num_cell)\n    Ldiv = L / cell\n    Hdiv = L / cell",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "number_of_polygon_sides",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def number_of_polygon_sides(n):\n    \"\"\"probability function for the number of polygon sides n.\"\"\"\n    # both the data below is obtained by fitting on the statistics\n    omega = 2.2  # as given in the paper\n    nc = 5.8\n    return (1/(omega*math.sqrt(math.pi/2)))*math.exp((-2*(n-nc)**2)/omega**2)\ndef first_angle(n, dkl, dku):\n    \"\"\"After defining an origin inside the aggregate. set the polar\n    angle theta of the first corner\"\"\"\n    # random number between 0 and 1",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "first_angle",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def first_angle(n, dkl, dku):\n    \"\"\"After defining an origin inside the aggregate. set the polar\n    angle theta of the first corner\"\"\"\n    # random number between 0 and 1\n    nl = random.random()\n    angle = (nl/n)*2*math.pi\n    # calculate radius\n    rad = radius(dkl, dku, nl)\n    return angle, rad\ndef other_angle(n, dkl, dku):",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "other_angle",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def other_angle(n, dkl, dku):\n    \"\"\"\n    setting the polar angle and polar radius of the ith\n    corner Pi in a similar way.\n    \"\"\"\n    nli = random.random()\n    denominator = sum([((2/n) + nli) for _ in range(2, n)])\n    numerator = ((2*math.pi/n) + (2 * math.pi * nli))\n    angle = numerator / denominator\n    # calculate radius",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "radius",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def radius(dkl, dku, nli):\n    return ((dkl+dku)/4) + (2*nli - 1) * ((dku-dkl)/4)\ndef fuller_curve(d):\n    m = 0.5\n    # upper limit of aggregate size\n    D = 9.5\n    return ((d/D)**m)\n# This function gets just one pair of coordinates based on the angle theta\ndef get_circle_coord(theta, x_center, y_center, radius):\n    x = radius * math.cos(theta) + x_center",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "fuller_curve",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def fuller_curve(d):\n    m = 0.5\n    # upper limit of aggregate size\n    D = 9.5\n    return ((d/D)**m)\n# This function gets just one pair of coordinates based on the angle theta\ndef get_circle_coord(theta, x_center, y_center, radius):\n    x = radius * math.cos(theta) + x_center\n    y = radius * math.sin(theta) + y_center\n    return (x, y)",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "get_circle_coord",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def get_circle_coord(theta, x_center, y_center, radius):\n    x = radius * math.cos(theta) + x_center\n    y = radius * math.sin(theta) + y_center\n    return (x, y)\n# I want to draw a polygonal aggregate\ndef draw_polygon():\n    \"\"\"Thus will generate a series of polar angles in theta and radians as well\n    as their corresponsing radius. This set of polar coordinates still\n    have to be converted to cartesian coordinates  using the polarToCartesian\n    function.\"\"\"",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "draw_polygon",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def draw_polygon():\n    \"\"\"Thus will generate a series of polar angles in theta and radians as well\n    as their corresponsing radius. This set of polar coordinates still\n    have to be converted to cartesian coordinates  using the polarToCartesian\n    function.\"\"\"\n    # aggregate size ranges (lower limit, upper limit)\n    aggregate_size_range = [[2.5, 4.75], [\n        4.75, 9.5], [9.5, 12.5], [12.5, 20.0]]\n    # aggregate_size_range = [[5, 10], [10, 20], [20, 30], [30, 40], [40, 50],\n    #  [50, 60], [60, 70], [70, 80]]",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "polarToCartesian",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def polarToCartesian(angle_and_radius, angle_in_rads, origin=None):\n    \"\"\"this function converts the generated polar coordinates\n    to cartesian coordinates,\n    arguments: angle_and_radius, angle_in_rads origin=None\"\"\"\n    x_coords = []\n    y_coords = []\n    polygon = []\n    for index, i in enumerate(angle_and_radius):\n        x_coord = i[1] * np.cos(angle_in_rads[index])\n        y_coord = i[1] * np.sin(angle_in_rads[index])",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plotPolyGon",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plotPolyGon(c_coords):\n    \"\"\"Produces a polygon plot of a set of cartesian coordinates,\n    arguments: c_coords (cartesian coordinates)\"\"\"\n    x_coords, y_coords = c_coords[0], c_coords[1]\n    # Create a line plot to connect the points and form a closed polygon\n    plt.figure()\n    plt.plot(x_coords, y_coords, marker='o')\n    plt.plot([x_coords[-1], x_coords[0]], [y_coords[-1], y_coords[0]], 'k-')\n    plt.xlabel('X-axis')\n    plt.ylabel('Y-axis')",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plotFilledPolyGonConcrete",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plotFilledPolyGonConcrete(c_coords, x_limit=None, y_limit=None):\n    \"\"\"Produces a polygon plot fill of a set of cartesian coordinates,\n    arguments: c_coords (cartesian coordinates), x_limit, y_limits of graph\"\"\"\n    x_coords, y_coords = c_coords[0], c_coords[1]\n    # Create a filled polygon\n    plt.figure()\n    plt.fill(x_coords, y_coords, facecolor='lightblue', edgecolor='black')\n    plt.xlabel('X-axis')\n    plt.ylabel('Y-axis')\n    plt.title('Filled Polygon from Set of Angles')",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "hasOverlapWithAxes",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def hasOverlapWithAxes(x_coords, y_coords):\n    \"\"\"Check for overlap between aggregates and axes of graphs.\n    arguments: x_coords, y_coords\"\"\"\n    # Check if any x or y coordinate is zero or negative\n    if any(coord <= 0 for coord in x_coords) or any(coord <= 0 for coord in y_coords) \\\n            or any(coord >= 300 for coord in x_coords) or any(coord >= 300 for coord in y_coords):\n        return True\n    else:\n        return False\ndef plotPolyGonConcrete(c_coords, x_limit=None, y_limit=None):",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plotPolyGonConcrete",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plotPolyGonConcrete(c_coords, x_limit=None, y_limit=None):\n    \"\"\"Produces a polygon plot fill of a set of cartesian coordinates,\n    arguments: c_coords (cartesian coordinates), x_limit, y_limits of graph\"\"\"\n    x_coords, y_coords = c_coords[0], c_coords[1]\n    # Check for overlap with axes\n    if hasOverlapWithAxes(x_coords, y_coords):\n        print(\"Polygon vertices overlap with the x or y axis. Adjust coordinates.\")\n        # return\n     # Create a filled polygon\n    plt.figure()",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "doPolygonsOverlap",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def doPolygonsOverlap(x_coords1, y_coords1, x_coords2, y_coords2):\n    \"\"\"This functions checks to see if two polygons\n    overlap with each other.\n    arguments, x, y coordinates of first polygon (aggregate), x,y coordinates of second polygon (aggregate)\"\"\"\n    poly1 = Polygon(zip(x_coords1, y_coords1))\n    poly2 = Polygon(zip(x_coords2, y_coords2))\n    return poly1.intersects(poly2)\ndef generate_aggregates(n, p_coords, c_coords):\n    \"\"\"This function generates a certain number of aggregates.\n    arguments(n): number of aggregates, p_coords(polar coordinates), c_coords (cartesian coordinates)\"\"\"",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "generate_aggregates",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def generate_aggregates(n, p_coords, c_coords):\n    \"\"\"This function generates a certain number of aggregates.\n    arguments(n): number of aggregates, p_coords(polar coordinates), c_coords (cartesian coordinates)\"\"\"\n    generated_aggregates = []\n    for i in range(n):\n        p_coords = draw_polygon()\n        c_coords = polarToCartesian(p_coords[0], p_coords[1])\n        generated_aggregates.append(c_coords)\n    return generate_aggregates\ndef check_for_overlap(gen_aggregates):",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "check_for_overlap",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def check_for_overlap(gen_aggregates):\n    \"\"\"This will run a loop that gathers the indexes\n    of aggregates that overlaps other aggregates so that\n    we can remove them. Nox we will have an array of aggregates we can plot\n    that do not overlap one another.\n    arguments: it takes the array of generated indexes.\"\"\"\n    indexes = []\n    for i in range(len(gen_aggregates)):\n        first_aggregate = gen_aggregates[i]\n        for j in range(i+1, len(gen_aggregates)):",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "is_point_inside_polygon",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def is_point_inside_polygon(x, y, polygon):\n    \"\"\"this function returns the relationship\n    between a set of x, y point and a polygon.\n    meaning is  the point  inside or outside the polygon?\"\"\"\n    n = len(polygon)\n    wn = 0  # Initialize winding number\n    for i in range(n):\n        x1, y1 = polygon[i]\n        x2, y2 = polygon[(i + 1) % n]  # Wrap around for the last edge\n        if y1 <= y:",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plot_aggregate_only",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plot_aggregate_only(c_coords, non_overlap_aggregates):\n    \"\"\"this will plot only the aggregates to the graph\n    using  the cartesian coords (c_coords) and the non_overlap_aggregates.\n    arguments:\n    c_coords: c_coords\n    non_overlap_aggregates\"\"\"\n    plt.figure()\n    for c_coords in non_overlap_aggregates:\n        x_coords, y_coords = c_coords[0], c_coords[1]\n        plt.fill(x_coords, y_coords, facecolor='lightblue', edgecolor='black')",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plot_aggregate_with_grids",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plot_aggregate_with_grids(c_coords, non_overlap_aggregates, cell_size, num_cells,\n                              x_limit, y_limit):\n    \"\"\"arguments: cartesian coordinates (c_coords)\n    non_overlap_aggregates,\n    cell_size,\n    num_cells,\n    x_limit,\n    y_limit\"\"\"\n    num_cell = num_cells // cell_size\n    # Create a new figure",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plot_aggregate_with_colored_grids",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plot_aggregate_with_colored_grids(c_coords, non_overlap_aggregates, cell_size, num_cells,\n                                      x_limit, y_limit):\n    \"\"\"arguments: cartesian coordinates (c_coords)\n    non_overlap_aggregates,\n    cell_size,\n    num_cells,\n    x_limit,\n    y_limit\"\"\"\n    num_cell = num_cells // cell_size\n    # Create a new figure",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plot_coloured_grids_only",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plot_coloured_grids_only(c_coords, non_overlap_aggregates, cell_size, num_cells,\n                             x_limit, y_limit):\n    num_cell = num_cells // cell_size\n    # Create a new figure\n    plt.figure()\n    # Create axis\n    ax = plt.gca()\n    # Set the x-axis and y-axis limits\n    ax.set_xlim(0, num_cells)\n    ax.set_ylim(0, num_cells)",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "plot_aggregate_matrix_itz_grids",
+        "kind": 2,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "def plot_aggregate_matrix_itz_grids(c_coords, non_overlap_aggregates, cell_size, num_cells,\n                                    x_limit, y_limit):\n    num_cell = num_cells // cell_size\n    # Create a new figure\n    plt.figure()\n    # Create axis\n    ax = plt.gca()\n    # Set the x-axis and y-axis limits\n    ax.set_xlim(0, num_cells)\n    ax.set_ylim(0, num_cells)",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "author",
+        "kind": 5,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "author = \"Faisal Lawan Muhammad\"\nversion = 0.1\nego= 'frog'\ndef generate_vertices(j, i, ecell):\n    \"\"\"returns array of a, b, c, d, o(center).\n      a vertex of the bottom left corner\n      b vertex of the top left corner\n      c vertex of the top right corner\n      d vertex of the  bottom right corner\n      0 vertex of the center",
+        "detail": "pymeso",
+        "documentation": {}
+    },
+    {
+        "label": "version",
+        "kind": 5,
+        "importPath": "pymeso",
+        "description": "pymeso",
+        "peekOfCode": "version = 0.1\nego= 'frog'\ndef generate_vertices(j, i, ecell):\n    \"\"\"returns array of a, b, c, d, o(center).\n      a vertex of the bottom left corner\n      b vertex of the top left corner\n      c vertex of the top right corner\n      d vertex of the  bottom right corner\n      0 vertex of the center\n      arguments: j, i, ecell\"\"\"",
+        "detail": "pymeso",
+        "documentation": {}
+    }
+]

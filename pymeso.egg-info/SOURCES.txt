@@ -1,0 +1,5 @@
+setup.py
+pymeso.egg-info/PKG-INFO
+pymeso.egg-info/SOURCES.txt
+pymeso.egg-info/dependency_links.txt
+pymeso.egg-info/top_level.txt
